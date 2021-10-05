@@ -22,12 +22,21 @@ const App = () => {
     setButtonColor('white');
   }
 
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  }
+
 
   return (
     <div className="container">
       <h1>{headingText}</h1>
-      <input type="text" placeholder="What's your name?" />
-      <button style={{backgroundColor: buttonColor}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}>Submit</button>
+      <input type="text" placeholder="What's your name?" onChange={handleChange} />
+      
+      <button 
+        style={{backgroundColor: buttonColor}} 
+        onMouseOver={handleMouseOver} 
+        onMouseOut={handleMouseOut} 
+        onClick={handleClick}>Submit</button>
     </div>
   );
 }
