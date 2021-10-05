@@ -1,11 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 
-function App() {
+
+const App = () => {
+
+
+  const [headingText, setHeadingText] = useState('Hello');
+
+  const [buttonColor, setButtonColor] = useState('white');
+
+  const handleClick = () => {
+    setHeadingText('Clicked!');
+  }
+  
+  const handleMouseOver = () => {
+    setHeadingText('Mouse Over!');
+    setButtonColor('black');
+  }
+
+  const handleMouseOut = () => {
+    setHeadingText('Mouse Out!');
+    setButtonColor('white');
+  }
+
+
   return (
     <div className="container">
-      <h1>Hello</h1>
+      <h1>{headingText}</h1>
       <input type="text" placeholder="What's your name?" />
-      <button>Submit</button>
+      <button style={{backgroundColor: buttonColor}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}>Submit</button>
     </div>
   );
 }
