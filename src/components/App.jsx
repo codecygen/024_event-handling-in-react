@@ -6,12 +6,15 @@ const App = () => {
 
   const [headingText, setHeadingText] = useState('Mouse not hovered on button!');
   const [submittedName, setSubmittedName] = useState('');
+  const [submittedLastName, setSubmittedLastName] = useState('');
   const [buttonColor, setButtonColor] = useState('white');
-  const [name, setName] = useState('')
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   const handleClick = () => {
     setHeadingText('Clicked!');
     setSubmittedName(name);
+    setSubmittedLastName(lastName);
   }
   
   const handleMouseOver = () => {
@@ -24,9 +27,14 @@ const App = () => {
     setButtonColor('white');
   }
 
-  const handleChange = (e) => {
+  const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
+  }
+
+  const handleLastNameChange = (e) => {
+    console.log(e.target.value);
+    setLastName(e.target.value);
   }
 
   // In HTML, elements are responsible of handling their own state.
@@ -45,14 +53,20 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Hello {submittedName}</h1>
-      <h1>You typed {name}</h1>
+      <h1>Hello {submittedName} {submittedLastName}</h1>
+      <h1>You typed {name} {lastName}</h1>
       <h1>{headingText}</h1>
       <input 
       type="text" 
-      placeholder="What's your name?" 
-      onChange={handleChange}
+      placeholder="First Name" 
+      onChange={handleNameChange}
       value={name} />
+
+      <input 
+        type='text' 
+        placeholder='Last Name' 
+        onChange={handleLastNameChange} 
+        value={lastName} />
       
       <button 
         style={{backgroundColor: buttonColor}} 
