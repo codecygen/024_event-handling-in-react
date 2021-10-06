@@ -5,16 +5,22 @@ const App = () => {
 
 
   const [headingText, setHeadingText] = useState('Mouse not hovered on button!');
-  const [submittedName, setSubmittedName] = useState('');
-  const [submittedLastName, setSubmittedLastName] = useState('');
   const [buttonColor, setButtonColor] = useState('white');
-  const [name, setName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState({
+    fName: '',
+    lName: ''
+  });
+
+  const [submittedFName, setSubmittedFName] = useState({
+    fName: '',
+    lName: ''
+  });
 
   const handleClick = () => {
-    setHeadingText('Clicked!');
-    setSubmittedName(name);
-    setSubmittedLastName(lastName);
+    setSubmittedFName({
+      fName: fullName.fName,
+      lName: fullName.lName
+    });
   }
   
   const handleMouseOver = () => {
@@ -28,13 +34,12 @@ const App = () => {
   }
 
   const handleNameChange = (e) => {
-    console.log(e.target.value);
-    setName(e.target.value);
-  }
-
-  const handleLastNameChange = (e) => {
-    console.log(e.target.value);
-    setLastName(e.target.value);
+    const newValue = e.target.value;
+    const inputName = e.target.name;
+    
+    inputName === 'fName' ?
+      setFullName({fName: newValue, lName: fullName.lName})
+      : setFullName({lName: newValue, fName: fullName.fName})
   }
 
   // In HTML, elements are responsible of handling their own state.
@@ -53,20 +58,24 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Hello {submittedName} {submittedLastName}</h1>
-      <h1>You typed {name} {lastName}</h1>
+      <h1>Hello {submittedFName.fName} {submittedFName.lName}</h1>
+      <h1>You typed {fullName.fName} {fullName.lName}</h1>
       <h1>{headingText}</h1>
       <input 
-      type="text" 
-      placeholder="First Name" 
-      onChange={handleNameChange}
-      value={name} />
+        type="text"
+        name='fName' 
+        placeholder="First Name" 
+        onChange={handleNameChange}
+        value={fullName.fName} 
+      />
 
       <input 
-        type='text' 
-        placeholder='Last Name' 
-        onChange={handleLastNameChange} 
-        value={lastName} />
+        type="text" 
+        name='lName'  
+        placeholder="Last Name" 
+        onChange={handleNameChange}
+        value={fullName.lName} 
+      />
       
       <button 
         style={{backgroundColor: buttonColor}} 
