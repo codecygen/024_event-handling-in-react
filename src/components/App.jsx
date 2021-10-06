@@ -17,6 +17,8 @@ const App = () => {
   });
 
   const handleClick = () => {
+    // SubmittedFName will get all the values from
+    // typed record which is fullName.
     setSubmittedFName({
       fName: fullName.fName,
       lName: fullName.lName
@@ -34,12 +36,22 @@ const App = () => {
   }
 
   const handleNameChange = (e) => {
+    // value that you enter into input cell, this also controls
+    // value attribute of the element.
     const newValue = e.target.value;
+
+    // name attribute in input elements
     const inputName = e.target.name;
     
+    // You have to write it like this because, React
+    // will delete the previous fName or lName value
+    // in other cases.
     inputName === 'fName' ?
       setFullName({fName: newValue, lName: fullName.lName})
       : setFullName({lName: newValue, fName: fullName.fName})
+
+    // You can also call another function in setFullName function if you
+    // want to do so.
   }
 
   // In HTML, elements are responsible of handling their own state.
